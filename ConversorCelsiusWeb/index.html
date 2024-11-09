@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://lestic.com.br/index/css/import.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap">
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            text-align:center;
+            font-family:'Lato', 'Poppins', 'Inter', Arial;
+        }
+        h1{
+            font-weight:800;
+        }
+        hr{
+            margin-top:2vh;
+            margin-bottom:2vh;
+            border-color:black;
+            width:80%;
+            border-radius:5px;
+        }
+        main{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+            margin-top:3vh;
+        }
+        body{
+            background-color:rgb(221, 204, 204);
+        }
+        .flex{
+            display:flex;
+            text-align:justify;
+            align-items:center;
+            justify-content:center;
+            width:50%;
+        }
+        .flex p{
+            margin-right:1vh;
+        }
+        input{
+            margin-top:1vh;
+            height:3.25vh;
+            border-radius:1vh;
+            border:0;
+        }
+        button{
+            transition:0.5s;
+            height:5vh;
+            width:30vh;
+            border-radius:1.5vh;
+            font-weight:700;
+            margin-top:4vh;
+        }
+        button:hover{
+            transition:0.5s;
+            cursor:pointer;
+            background-color:rgb(183, 207, 228);
+        }
+    </style>
+    <title>Conversor de Milhas e Quilômetros</title>
+</head>
+<body>
+    <main>
+        <h1>Conversor de Milhas e Quilômetros</h1>
+        <hr> <!-- Não é só para ficar bonito, mas também dar um espaço entre essa divisão de tópico-->
+        <div class="flex"><p>Quilômetros:</p><input type="number" placeholder="       Quilômetros" id="km" title=""></div>
+        <div class="flex"><p>Milhas:</p><input type="number" placeholder="       Milhas" id="mi" title=""></div>
+        <button id="converter">Converter!</button>
+        <p id="error"></p>
+    </main>
+    <script>
+        const km = document.getElementById("km")
+        const mi = document.getElementById("mi")  
+        const converter = document.getElementById("converter")
+        const error = document.getElementById("error") 
+
+        error.style.color = "red";
+
+        converter.onclick = () => {
+            if(km.value==""&&mi.value>0){
+                km.value = Math.round((mi.value*1.609344)*1000)/1000
+                error.innerText = ""
+                console.log(`Calculo realizado! Milhas = ${mi.value} || Quilômetros = ${km.value}`)
+            }else if(mi.value==""&&km.value>0){
+                mi.value = Math.round((km.value/1.609344)*1000)/1000
+                error.innerText = ""
+                console.log(`Calculo realizado! Milhas = ${mi.value} || Quilômetros = ${km.value}`)
+            }else if(mi.value!=""&&km.value!=""){
+                error.innerText = 'Como esse sistema é bem simples, um dos valores precisa que o outro esteja vazio!'
+            }else if(mi.value==""&&km.value==""){
+                error.innerText = 'Como esse sistema não lê mentes, um dos valores tem que conter algum valor.'
+                // desculpa a grosseria ;-;
+            }
+        }
+    </script>
+</body>
+</html>

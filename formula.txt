@@ -1,0 +1,8 @@
+F = C*(9.0/5)+32
+
+C = (F-32)*(5.0/9)
+
+Para fazer o cálculo em java, necessita que F no 1° caso seja double, e que C no 2° caso seja double
+
+Km = Mi*1.609344
+Mi = Km/1.609344
